@@ -7,9 +7,9 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
                 
                     sh """
-                    sudo docker build . -t ahmedatef1994/jenkins_test:1.0
-                    sudo docker login --username ${username} --password ${password}
-                    sudo docker push ahmedatef1994/jenkins_test:1.0
+                    docker build . -t ahmedatef1994/jenkins_test:1.0
+                    docker login --username ${username} --password ${password}
+                    docker push ahmedatef1994/jenkins_test:1.0
                     """
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'password', usernameVariable: 'username')]) {
                 
                     sh """
-                    sudo docker run -d -p 8000:8000 ahmedatef1994/jenkins_test:1.0
+                    docker run -d -p 8000:8000 sarahouf/jenkins_test:1.0
                     """
                 }
             }
